@@ -24,7 +24,14 @@ public class BoardsPage extends BasePage {
     WebElement inputBoardTitle;
     @FindBy(xpath = "//button[@data-testid='create-board-submit-button']")
     WebElement buttonCreateBoardSubmit;
+    @FindBy(xpath = "//div[@class='board-tile-details is-badged']")
+    WebElement firstBoard;
+    @FindBy(xpath = "//span[@class='QMKgZFIlTLiEJN']")
+    WebElement popUpMessageBoardDelete;
 
+    public void openFirstBoard() {
+        clickWait(firstBoard, 3);
+    }
 
     public boolean validateUrl() {
         return new WebDriverWait(driver, Duration.ofSeconds(3))
@@ -37,13 +44,17 @@ public class BoardsPage extends BasePage {
         clickWait(buttonCreateBoardSubmit, 3);
     }
 
-    public void createNewBoardNegative(Board board){
+    public void createNewBoardNegative(Board board) {
         clickWait(btnCreateNewBoard, 3);
         inputBoardTitle.sendKeys(board.getBoardTitle());
     }
-    public  boolean buttonCreateIsNotClickable(){
+
+    public boolean buttonCreateIsNotClickable() {
         return new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.not(ExpectedConditions
                         .elementToBeClickable(buttonCreateBoardSubmit)));
+    }
+    public boolean validatePopUpMessage(String text){
+        return validateTextInElementWait(popUpMessageBoardDelete, text, 5);
     }
 }

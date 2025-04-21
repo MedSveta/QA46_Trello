@@ -34,7 +34,7 @@ public class BoardsPage extends BasePage {
     }
 
     public boolean validateUrl() {
-        return new WebDriverWait(driver, Duration.ofSeconds(3))
+        return new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains("boards"));
     }
 

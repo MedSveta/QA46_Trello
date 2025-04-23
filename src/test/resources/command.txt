@@ -1,1 +1,3 @@
 ./gradlew clean smoketests
+./gradlew clean smoketestsbrowser -Pbrowser=firefox
+./gradlew clean smoketestsbrowser -Pbrowser=chrome

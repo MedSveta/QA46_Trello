@@ -28,6 +28,15 @@ public class BoardsPage extends BasePage {
     WebElement firstBoard;
     @FindBy(xpath = "//span[@class='QMKgZFIlTLiEJN']")
     WebElement popUpMessageBoardDelete;
+    @FindBy(xpath = "//div[@class='B1uWdim9Jd0dJ9']")
+    WebElement btnAccount;
+    @FindBy(xpath = "//a[@class='gJDsPins_eYkBM']//span")
+    WebElement btnManageAccount;
+
+    public void openMyAccount(){
+        clickWait(btnAccount, 5);
+        clickWait(btnManageAccount, 5);
+    }
 
     public void openFirstBoard() {
         clickWait(firstBoard, 3);

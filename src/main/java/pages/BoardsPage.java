@@ -30,7 +30,7 @@ public class BoardsPage extends BasePage {
     WebElement popUpMessageBoardDelete;
     @FindBy(xpath = "//div[@class='B1uWdim9Jd0dJ9']")
     WebElement btnAccount;
-    @FindBy(xpath = "//a[@class='gJDsPins_eYkBM']//span")
+    @FindBy(xpath = "//a[@data-testid='manage-account-link']")
     WebElement btnManageAccount;
 
     public void openMyAccount(){

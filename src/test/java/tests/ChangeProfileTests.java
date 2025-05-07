@@ -30,7 +30,7 @@ public class ChangeProfileTests extends AppManager {
     }
 
     @Test
-    public void changeProfilePhoto(){
+    public void changeProfilePhotoPositive() {
         boardsPage.openMyAccount();
         List<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
         System.out.println(tabs);
@@ -38,9 +38,25 @@ public class ChangeProfileTests extends AppManager {
         AtlassianProfilePage atlassianProfilePage
                 = new AtlassianProfilePage(getDriver());
         atlassianProfilePage.changeMyProfilePhoto
-                ("src/main/resources/cat4.jpg");
+                ("src/main/resources/tr_logo_3x.png");
         Assert.assertTrue(atlassianProfilePage
                 .validateMessage("We've uploaded your new avatar" +
-                ". It may take a few minutes to display everywhere."));
+                        ". It may take a few minutes to display everywhere."));
+    }
+
+    @Test
+    public void changeProfilePhotoWrongFormatNegative(Method method) {
+        boardsPage.openMyAccount();
+        List<String> tabs = new ArrayList<>(getDriver().getWindowHandles());
+        System.out.println(tabs);
+        getDriver().switchTo().window(tabs.get(1));
+        AtlassianProfilePage atlassianProfilePage
+                = new AtlassianProfilePage(getDriver());
+        atlassianProfilePage.changeMyProfilePhoto
+                ("src/main/resources/BoardTitle1.csv");
+        logger.info("Upload file csv " + method.getName());
+        Assert.assertTrue(atlassianProfilePage
+                .validateMessageWrongFormatFile
+                        ("Upload a photo or select from some default options"));
     }
 }
